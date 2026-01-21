@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quiz - Mille Bornes Écologiques | Novaracines</title>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+	<style>
+		/* --- VARIABLES & COULEURS --- */
+		:root {
+			--dark-green: #1a4d2e;
+			--forest-green: #2d6a4f;
+			--leaf-green: #40916c;
+			--light-green: #95d5b2;
+			--mint-cream: #d8f3dc;
+			--white: #ffffff;
+			--brown: #8d6e63;
+			--gold: #ffb703;
+		}
+
+		/* --- RESET & BASE --- */
+		html {
+			scroll-behavior: smooth;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Open Sans', sans-serif;
+
+			/* MODIFICATION ICI : On met le nom de votre fichier */
+			/* Assurez-vous que le nom 'foret-fond.jpg' correspond exactement à votre fichier */
+			background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
+				url('image_foret.jpg');
+
+			/* Si votre image est dans un dossier "images", écrivez : url('images/foret-fond.jpg'); */
+
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			color: var(--dark-green);
+			overflow-x: hidden;
+			line-height: 1.6;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			font-family: 'Montserrat', sans-serif;
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		/* --- HEADER --- */
+		header {
+			background-color: rgba(26, 77, 46, 0.98);
+			padding: 1rem 5%;
+			position: fixed;
+			width: 100%;
+			top: 0;
+			z-index: 1000;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+			backdrop-filter: blur(5px);
+			height: 80px;
+		}
+
+		.logo {
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: var(--white);
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+
+		/* Style du logo rond */
+		.logo-img {
+			height: 50px;
+			width: 50px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 2px solid var(--light-green);
+		}
+
+		nav ul {
+			display: flex;
+			list-style: none;
+			gap: 2.5rem;
+		}
+
+		nav a {
+			color: var(--white);
+			font-weight: 600;
+			font-size: 1.1rem;
+			position: relative;
+			transition: color 0.3s;
+		}
+
+		nav a:hover {
+			color: var(--light-green);
+		}
+
+		.mobile-menu-btn {
+			display: none;
+			font-size: 1.8rem;
+			color: var(--white);
+			background: none;
+			border: none;
+			cursor: pointer;
+		}
+
+		/* --- MAIN CONTENT --- */
+		main {
+			min-height: 100vh;
+			padding: 120px 5% 50px;
+		}
+
+		.section-title {
+			text-align: center;
+			font-size: 2.5rem;
+			margin-bottom: 3rem;
+			color: var(--white);
+			/* Titre en blanc pour contraster avec la forêt */
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+		}
+
+		.btn {
+			padding: 8px 16px;
+			background-color: var(--light-green);
+			color: var(--dark-green);
+			border-radius: 50px;
+			font-weight: bold;
+			font-size: 0.9rem;
+			transition: transform 0.3s, background 0.3s;
+			cursor: pointer;
+			border: none;
+		}
+
+		.btn:hover {
+			transform: scale(1.05);
+			background-color: var(--white);
+		}
+
+		/* --- LAYOUT 3 COLONNES --- */
+		.game-layout {
+			display: grid;
+			/* Gauche (Thèmes) | Centre (Jeu) | Droite (Progrès) */
+			grid-template-columns: 220px 1fr 220px;
+			gap: 2rem;
+			max-width: 1400px;
+			margin: 0 auto;
+			align-items: start;
+		}
+
+		/* SIDEBARS COMMUNS (Sticky) */
+		.sidebar {
+			position: sticky;
+			top: 100px;
+			/* Sous le header */
+			background-color: var(--white);
+			/* Fond blanc pour bien ressortir sur la forêt */
+			padding: 1.5rem;
+			border-radius: 15px;
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+			/* Ombre renforcée */
+			z-index: 100;
+			max-height: calc(100vh - 120px);
+			overflow-y: auto;
+		}
+
+		/* --- COLONNE GAUCHE : THÈMES --- */
+		.themes-list {
+			display: flex;
+			flex-direction: column;
+			gap: 0.8rem;
+		}
+
+		.theme-btn {
+			padding: 10px 15px;
+			background-color: var(--mint-cream);
+			color: var(--dark-green);
+			border: 2px solid transparent;
+			border-radius: 10px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.3s;
+			font-size: 0.9rem;
+			text-align: left;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.theme-btn i {
+			width: 20px;
+			text-align: center;
+			color: var(--forest-green);
+		}
+
+		.theme-btn:hover {
+			background-color: var(--light-green);
+			transform: translateX(5px);
+		}
+
+		.theme-btn.active {
+			background-color: var(--dark-green);
+			color: var(--white);
+			border-color: var(--dark-green);
+		}
+
+		.theme-btn.active i {
+			color: var(--white);
+		}
+
+		/* --- COLONNE CENTRALE : JEU --- */
+		.game-content {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+		}
+
+		/* --- COLONNE DROITE : PROGRESSION --- */
+		.progress-info {
+			text-align: center;
+		}
+
+		.tree-visual-container {
+			height: 80px;
+			display: flex;
+			align-items: flex-end;
+			justify-content: center;
+			margin-bottom: 15px;
+			margin-top: 10px;
+		}
+
+		.tree-icon-stage {
+			transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		}
+
+		.stage-label {
+			font-weight: bold;
+			color: var(--forest-green);
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			font-size: 0.85rem;
+			margin-bottom: 5px;
+			display: block;
+		}
+
+		@keyframes growPop {
+			0% {
+				transform: scale(1);
+			}
+
+			50% {
+				transform: scale(1.3);
+			}
+
+			100% {
+				transform: scale(1);
+			}
+		}
+
+		.grow-animation {
+			animation: growPop 0.4s ease-out;
+		}
+
+		/* --- STYLES QUIZ (CARTES) --- */
+		.quiz-option {
+			display: flex;
+			align-items: center;
+			padding: 1rem;
+			background-color: var(--mint-cream);
+			border-radius: 8px;
+			cursor: pointer;
+			transition: all 0.3s;
+			border: 2px solid transparent;
+		}
+
+		.quiz-option:hover {
+			background-color: var(--light-green);
+			transform: translateX(5px);
+		}
+
+		.quiz-option input[type="radio"] {
+			margin-right: 1rem;
+			width: 20px;
+			height: 20px;
+			cursor: pointer;
+		}
+
+		.quiz-feedback {
+			font-weight: bold;
+			border-left: 4px solid var(--leaf-green);
+			padding: 1rem;
+			margin-top: 1rem;
+			border-radius: 8px;
+		}
+
+		.quiz-feedback.correct {
+			background-color: #d8f3dc;
+			color: #1a4d2e;
+			border-left-color: #40916c;
+		}
+
+		.quiz-feedback.incorrect {
+			background-color: #fce4ec;
+			color: #c2185b;
+			border-left-color: #e91e63;
+		}
+
+		.game-won {
+			background: linear-gradient(135deg, #40916c, #95d5b2);
+			color: white;
+			padding: 2rem;
+			border-radius: 15px;
+			text-align: center;
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin-top: 3rem;
+			box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+		}
+
+		.quiz-card {
+			background: var(--white);
+			padding: 2rem;
+			border-radius: 15px;
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+			/* Ombre un peu plus forte */
+			scroll-margin-top: 120px;
+		}
+
+		.quiz-card h3 {
+			color: var(--forest-green);
+			margin-bottom: 1.5rem;
+		}
+
+		.quiz-card div {
+			display: grid;
+			gap: 1rem;
+		}
+
+		.next-batch-container {
+			text-align: center;
+			margin-top: 1rem;
+		}
+
+		.next-btn {
+			background-color: var(--forest-green);
+			color: white;
+			padding: 15px 40px;
+			font-size: 1.1rem;
+			border-radius: 50px;
+			border: none;
+			cursor: pointer;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+			transition: transform 0.2s;
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.next-btn:hover {
+			transform: scale(1.05);
+			background-color: var(--leaf-green);
+		}
+
+		footer {
+			background-color: var(--dark-green);
+			color: var(--white);
+			text-align: center;
+			padding: 2rem;
+			margin-top: 3rem;
+		}
+
+		/* --- RESPONSIVE --- */
+		@media (max-width: 1024px) {
+
+			/* Passage en 1 colonne sur tablette/mobile */
+			.game-layout {
+				grid-template-columns: 1fr;
+				gap: 1.5rem;
+			}
+
+			.sidebar {
+				position: static;
+				/* Plus de sticky */
+				max-height: none;
+				overflow: visible;
+			}
+
+			/* Ordre d'affichage mobile : Thèmes > Progrès > Jeu */
+			.left-sidebar {
+				order: 1;
+			}
+
+			.right-sidebar {
+				order: 2;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				text-align: left;
+			}
+
+			.game-content {
+				order: 3;
+			}
+
+			/* Ajustements spécifiques mobile */
+			.themes-list {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+			}
+
+			.tree-visual-container {
+				margin: 0;
+				height: 60px;
+			}
+
+			.progress-info {
+				text-align: right;
+			}
+		}
+
+		@media (max-width: 768px) {
+			header {
+				padding: 1rem;
+			}
+
+			.mobile-menu-btn {
+				display: block;
+				z-index: 1001;
+			}
+
+			nav ul {
+				display: none;
+				flex-direction: column;
+				position: fixed;
+				top: 0;
+				right: 0;
+				width: 80%;
+				height: 100vh;
+				background-color: var(--dark-green);
+				padding-top: 5rem;
+				align-items: center;
+				gap: 2rem;
+			}
+
+			nav ul.active {
+				display: flex;
+				animation: slideInRight 0.3s ease-out;
+			}
+
+			main {
+				padding: 100px 5% 30px;
+			}
+		}
+
+		@keyframes slideInRight {
+			from {
+				transform: translateX(100%);
+			}
+
+			to {
+				transform: translateX(0);
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<header role="banner">
+		<div class="logo">
+			<a href="index.html" style="display: flex; align-items: center; gap: 10px; color: white; text-decoration: none;">
+				<img src="images/logo-novaracines.png" alt="Novaracines" class="logo-img" onerror="this.style.display='none'">
+				<span>Novaracines</span>
+			</a>
+		</div>
+		<button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+		<nav>
+			<ul id="nav-list">
+				<li><a href="siteInternet.html#accueil">Accueil</a></li>
+				<li><a href="siteInternet.html#mission">Notre Mission</a></li>
+				<li><a href="siteInternet.html#agir">Nos Actions</a></li>
+				<li><a href="quiz.html" style="color: var(--light-green);">Quiz</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<h1 class="section-title">🏁 Mille Bornes Écologiques 🌱</h1>
+		<p
+			style="text-align: center; font-size: 1.1rem; color: var(--white); margin-bottom: 2rem; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">
+			Répondez correctement pour avancer ! Chaque bonne réponse = +100 km. Atteignez 1000 km !
+		</p>
+
+		<div class="game-layout">
+
+			<aside class="sidebar left-sidebar">
+				<h3 style="color: var(--forest-green); margin-bottom: 1rem; font-size: 1.1rem; text-align: center;">Thèmes 🌍
+				</h3>
+				<div class="themes-list">
+					<button onclick="selectTheme('all')" class="theme-btn active" data-theme="all"><i class="fas fa-globe"></i>
+						Tous</button>
+					<button onclick="selectTheme('trees')" class="theme-btn" data-theme="trees"><i class="fas fa-tree"></i>
+						Forêts</button>
+					<button onclick="selectTheme('deforestation')" class="theme-btn" data-theme="deforestation"><i
+							class="fas fa-fire"></i> Déforestation</button>
+					<button onclick="selectTheme('climate')" class="theme-btn" data-theme="climate"><i class="fas fa-cloud"></i>
+						Climat</button>
+					<button onclick="selectTheme('biodiversity')" class="theme-btn" data-theme="biodiversity"><i
+							class="fas fa-leaf"></i> Biodiversité</button>
+					<button onclick="selectTheme('pollution')" class="theme-btn" data-theme="pollution"><i
+							class="fas fa-wind"></i> Pollution</button>
+					<button onclick="selectTheme('energy')" class="theme-btn" data-theme="energy"><i class="fas fa-bolt"></i>
+						Énergies</button>
+					<button onclick="selectTheme('ecosystems')" class="theme-btn" data-theme="ecosystems"><i
+							class="fas fa-water"></i> Eau</button>
+					<button onclick="selectTheme('conservation')" class="theme-btn" data-theme="conservation"><i
+							class="fas fa-shield-alt"></i> Protection</button>
+				</div>
+			</aside>
+
+			<section class="game-content">
+				<div id="quiz-container" style="display: flex; flex-direction: column; gap: 2rem;"></div>
+
+				<div class="next-batch-container">
+					<button class="next-btn" onclick="loadNextBatch()">
+						<i class="fas fa-arrow-right"></i> Questions Suivantes
+					</button>
+				</div>
+
+				<div class="game-won" style="display: none;">
+					🏆 FORÊT SAUVÉE ! 🏆<br>
+					<span style="font-size: 1.2rem;">Votre arbre est magnifique ! 🌳✨</span><br>
+					<a href="siteInternet.html" class="btn" style="margin-top: 1.5rem; display: inline-block;">Retour à
+						l'accueil</a>
+				</div>
+			</section>
+
+			<aside class="sidebar right-sidebar">
+				<div class="progress-info">
+					<div id="stageLabel" class="stage-label">Stade : Graine</div>
+					<div style="font-size: 1.1rem; font-weight: bold; color: var(--dark-green);">
+						<span id="distance">0</span> / 1000 km
+					</div>
+				</div>
+
+				<div class="tree-visual-container">
+					<i id="treeIcon" class="fas fa-circle tree-icon-stage" style="color: var(--brown); font-size: 1.5rem;"></i>
+				</div>
+
+				<button class="btn" onclick="resetGame()"
+					style="background-color: #e91e63; color: white; padding: 8px 15px; font-size: 0.8rem; width: 100%;">
+					<i class="fas fa-redo"></i> Replanter (Reset)
+				</button>
+			</aside>
+
+		</div>
+	</main>
+
+	<footer>
+		<div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+			<i class="fas fa-seedling"></i> Novaracines
+		</div>
+		<p>&copy; 2024 Novaracines. Projet étudiant ESAIP.</p>
+	</footer>
+
+	<script src="questions-db.js"></script>
+	<script>
+		// --- MENU MOBILE ---
+		function toggleMenu() {
+			const nav = document.getElementById('nav-list');
+			const btn = document.querySelector('.mobile-menu-btn');
+			nav.classList.toggle('active');
+			const isExpanded = nav.classList.contains('active');
+			btn.setAttribute('aria-expanded', isExpanded);
+			if (isExpanded) {
+				icon.classList.remove('fa-bars');
+				icon.classList.add('fa-times');
+			} else {
+				icon.classList.remove('fa-times');
+				icon.classList.add('fa-bars');
+			}
+		}
+
+		// --- VARIABLES JEU ---
+		let gameDistance = 0;
+		const maxDistance = 1000;
+		const correctPoints = 100;
+		const incorrectPoints = -50;
+		let selectedTheme = 'all';
+		let remainingQuestions = [];
+
+		// --- LOGIQUE THÈMES ---
+		const themes = {
+			all: { min: 1, max: 150 }, trees: { min: 1, max: 30 }, deforestation: { min: 31, max: 50 },
+			climate: { min: 51, max: 70 }, biodiversity: { min: 71, max: 85 }, pollution: { min: 86, max: 100 },
+			energy: { min: 101, max: 115 }, ecosystems: { min: 116, max: 130 }, conservation: { min: 131, max: 150 }
+		};
+
+		function selectTheme(theme) {
+			selectedTheme = theme;
+			document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+			document.querySelector(`[data-theme="${theme}"]`).classList.add('active');
+			refillQuestionsPool(theme);
+			displayNextQuestions();
+		}
+
+		function refillQuestionsPool(theme) {
+			const range = themes[theme];
+			const questions = questionsDatabase.filter(q => q.id >= range.min && q.id <= range.max);
+			remainingQuestions = shuffleArray([...questions]);
+		}
+
+		function loadNextBatch() {
+			displayNextQuestions();
+			window.scrollTo({ top: 0, behavior: "smooth" });
+		}
+
+		function displayNextQuestions() {
+			const container = document.getElementById('quiz-container');
+			container.innerHTML = '';
+			document.querySelectorAll('.game-won').forEach(el => el.style.display = 'none');
+
+			if (remainingQuestions.length < 4) refillQuestionsPool(selectedTheme);
+			const batch = remainingQuestions.slice(0, 4);
+			remainingQuestions = remainingQuestions.slice(4);
+
+			batch.forEach((q, idx) => {
+				const div = document.createElement('div');
+				div.className = 'quiz-card';
+				const options = q.options.map((txt, i) => ({ text: txt, value: i }));
+				const shuffledOpts = shuffleArray(options);
+
+				let optsHTML = shuffledOpts.map((opt, i) => `
+					<label class="quiz-option">
+						<input type="radio" name="q${idx}" value="${opt.value === q.correctAnswer ? 'correct' : 'incorrect'}" 
+							onchange="checkAnswer('q${idx}', 'fb${idx}', ${q.id})">
+						<span>${String.fromCharCode(97 + i)}) ${opt.text}</span>
+					</label>
+				`).join('');
+
+				div.innerHTML = `<h3>${q.question}</h3><div>${optsHTML}</div><p id="fb${idx}" class="quiz-feedback" style="display:none"></p>`;
+				container.appendChild(div);
+			});
+			updateVisuals();
+		}
+
+		function resetGame() {
+			gameDistance = 0;
+			selectTheme(selectedTheme);
+		}
+
+		function shuffleArray(arr) {
+			return arr.sort(() => Math.random() - 0.5);
+		}
+
+		// --- VISUELS ARBRE ---
+		function updateVisuals() {
+			const distanceEl = document.getElementById('distance');
+			const iconEl = document.getElementById('treeIcon');
+			const stageLabel = document.getElementById('stageLabel');
+
+			distanceEl.innerText = Math.max(0, gameDistance);
+
+			let iconClass = "fa-circle";
+			let color = "var(--brown)";
+			let size = "1.5rem";
+			let label = "Graine";
+
+			if (gameDistance >= 1000) {
+				iconClass = "fa-tree"; color = "var(--gold)"; size = "4rem"; label = "Forêt Maître 🏆";
+				document.querySelector('.game-won').style.display = 'block';
+			} else if (gameDistance >= 700) {
+				iconClass = "fa-tree"; color = "var(--dark-green)"; size = "3.5rem"; label = "Grand Chêne";
+			} else if (gameDistance >= 400) {
+				iconClass = "fa-tree"; color = "var(--leaf-green)"; size = "2.5rem"; label = "Arbuste";
+			} else if (gameDistance >= 100) {
+				iconClass = "fa-seedling"; color = "var(--forest-green)"; size = "2rem"; label = "Jeune Pousse";
+			}
+
+			iconEl.className = `fas ${iconClass} tree-icon-stage`;
+			iconEl.style.color = color;
+			iconEl.style.fontSize = size;
+			stageLabel.innerText = "Stade : " + label;
+		}
+
+		function checkAnswer(name, fbId, qId) {
+			const input = document.querySelector(`input[name="${name}"]:checked`);
+			const fb = document.getElementById(fbId);
+			const q = questionsDatabase.find(x => x.id === qId);
+			const iconEl = document.getElementById('treeIcon');
+
+			document.querySelectorAll(`input[name="${name}"]`).forEach(i => {
+				i.disabled = true;
+				i.parentElement.style.opacity = "0.7";
+			});
+			input.parentElement.style.opacity = "1";
+
+			const isCorrect = input.value === 'correct';
+			fb.style.display = 'block';
+			fb.innerText = (isCorrect ? "✅ " : "❌ ") + q.explanation;
+			fb.className = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+
+			if (isCorrect) {
+				input.parentElement.style.background = "#d8f3dc";
+				input.parentElement.style.border = "2px solid #40916c";
+				gameDistance += correctPoints;
+
+				iconEl.classList.remove('grow-animation');
+				void iconEl.offsetWidth;
+				iconEl.classList.add('grow-animation');
+			} else {
+				input.parentElement.style.background = "#fce4ec";
+				input.parentElement.style.border = "2px solid #e91e63";
+				gameDistance = Math.max(0, gameDistance + incorrectPoints);
+			}
+			updateVisuals();
+		}
+
+		selectTheme('all');
+	</script>
+</body>
+
+</html>
