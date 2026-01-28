@@ -171,6 +171,65 @@
 			background-color: var(--dark-green);
 		}
 
+		/* STYLE DU SCHÉMA SVG */
+		.diagram-container {
+			background-color: var(--mint-cream);
+			border-radius: 20px;
+			padding: 2rem;
+			margin: 3rem 0;
+			text-align: center;
+		}
+
+		.bio-diagram {
+			max-width: 100%;
+			height: auto;
+			font-family: 'Montserrat', sans-serif;
+		}
+
+		.diagram-circle {
+			fill: var(--white);
+			stroke: var(--primary-green);
+			stroke-width: 3px;
+			filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.1));
+			transition: all 0.3s ease;
+		}
+
+		.diagram-center {
+			fill: var(--primary-green);
+			stroke: var(--accent-green);
+			stroke-width: 4px;
+		}
+
+		.diagram-text {
+			font-weight: 600;
+			fill: var(--dark-green);
+			text-anchor: middle;
+			dominant-baseline: middle;
+			font-size: 14px;
+		}
+
+		.diagram-text-center {
+			fill: var(--white);
+			font-weight: 700;
+			font-size: 16px;
+		}
+
+		.diagram-arrow {
+			fill: none;
+			stroke: var(--accent-green);
+			stroke-width: 3px;
+			stroke-linecap: round;
+			marker-end: url(#arrowhead);
+		}
+
+		/* Animation au survol */
+		.diagram-group:hover .diagram-circle {
+			fill: var(--light-green);
+			transform: scale(1.05);
+			transform-origin: center;
+		}
+
+
 		/* FOOTER */
 		footer {
 			background-color: var(--dark-green);
@@ -216,6 +275,12 @@
 			.content-section {
 				padding: 3rem 5%;
 			}
+
+			.diagram-text {
+				font-size: 12px;
+			}
+
+			/* Texte plus petit sur mobile */
 		}
 	</style>
 </head>
@@ -258,25 +323,75 @@
 		</div>
 
 		<div class="content-block">
-			<h2>Nos Actions Concrètes</h2>
-			<p>Pour soutenir la faune locale, nous mettons en place plusieurs initiatives sur nos terrains :</p>
-			<ul style="margin-left: 20px; margin-bottom: 2rem; line-height: 2;">
-				<li>🦋 <strong>Choix d'essences locales :</strong> Nous sélectionnons des plantes natives qui offrent gîte et
-					couvert aux espèces de la région.</li>
-				<li>🪵 <strong>Zones de refuge :</strong> Nous laissons volontairement du bois mort et des zones en friche pour
-					abriter les hérissons et les insectes.</li>
-				<li>🐦 <strong>Corridors écologiques :</strong> Nos haies bocagères servent d'autoroutes naturelles pour
-					permettre aux animaux de circuler en sécurité.</li>
-			</ul>
+			<h2>Un Équilibre Vital</h2>
+			<p>La biodiversité n'est pas qu'une simple collection d'espèces, c'est le véritable système immunitaire de nos
+				forêts. Un écosystème riche et varié est naturellement plus résilient face aux maladies et au changement
+				climatique.</p>
+			<p>Chaque maillon, du champignon microscopique au grand prédateur, joue un rôle irremplaçable. Ils garantissent la
+				fertilité des sols, la pollinisation et la régulation de l'eau. Préserver cette diversité, c'est assurer la
+				survie même de la forêt pour les générations futures.</p>
 
-			<div style="background-color: var(--mint-cream); padding: 2rem; border-radius: 15px; text-align: center;">
+			<div class="diagram-container">
+				<h3 style="color: var(--forest-green); margin-bottom: 1.5rem;">Le Cycle de la Biodiversité Forestière</h3>
+				<svg class="bio-diagram" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+							<polygon points="0 0, 10 3.5, 0 7" fill="var(--accent-green)" />
+						</marker>
+					</defs>
+
+					<path d="M 380 120 Q 480 120 480 220" class="diagram-arrow" />
+					<path d="M 480 380 Q 480 480 380 480" class="diagram-arrow" />
+					<path d="M 220 480 Q 120 480 120 380" class="diagram-arrow" />
+					<path d="M 120 220 Q 120 120 220 120" class="diagram-arrow" />
+
+					<g class="diagram-group">
+						<circle cx="300" cy="300" r="80" class="diagram-circle diagram-center" />
+						<text x="300" y="290" class="diagram-text diagram-text-center">ÉQUILIBRE</text>
+						<text x="300" y="315" class="diagram-text diagram-text-center">& RÉSILIENCE</text>
+					</g>
+
+					<g class="diagram-group" style="transform-origin: 300px 100px;">
+						<circle cx="300" cy="100" r="70" class="diagram-circle" />
+						<text x="300" y="90" class="diagram-text">
+							<tspan class="fa" style="font-family: FontAwesome;">&#xf6c4;</tspan> Sols Vivants
+						</text>
+						<text x="300" y="115" class="diagram-text">& Champignons</text>
+					</g>
+
+					<g class="diagram-group" style="transform-origin: 500px 300px;">
+						<circle cx="500" cy="300" r="70" class="diagram-circle" />
+						<text x="500" y="290" class="diagram-text">
+							<tspan class="fa" style="font-family: FontAwesome;">&#xf1bb;</tspan> Flore Locale
+						</text>
+						<text x="500" y="315" class="diagram-text">& Arbres Variés</text>
+					</g>
+
+					<g class="diagram-group" style="transform-origin: 300px 500px;">
+						<circle cx="300" cy="500" r="70" class="diagram-circle" />
+						<text x="300" y="490" class="diagram-text">
+							<tspan class="fa" style="font-family: FontAwesome;">&#xf52f;</tspan> Faune &
+						</text>
+						<text x="300" y="515" class="diagram-text">Pollinisateurs</text>
+					</g>
+
+					<g class="diagram-group" style="transform-origin: 100px 300px;">
+						<circle cx="100" cy="300" r="70" class="diagram-circle" />
+						<text x="100" y="290" class="diagram-text">
+							<tspan class="fa" style="font-family: FontAwesome;">&#xf46d;</tspan> Décomposeurs
+						</text>
+						<text x="100" y="315" class="diagram-text">& Bois Mort</text>
+					</g>
+				</svg>
+			</div>
+			<div
+				style="background-color: var(--mint-cream); padding: 2rem; border-radius: 15px; text-align: center; margin-top: 2rem;">
 				<h3 style="color: var(--forest-green); margin-bottom: 1rem;">Exemple inspirant : Les Éco-ponts</h3>
-				<img src="thumbnail.jpg" alt="Éco-pont en Dordogne pour le passage des animaux"
+				<img src="image_ceb750.jpg" alt="Éco-pont en Dordogne pour le passage des animaux"
 					style="max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
 
 				<p style="font-size: 0.9rem; font-style: italic; color: #555;">
 					Ci-dessus : Un éco-pont construit en Dordogne pour permettre aux animaux de traverser l'autoroute en sécurité.
-
 				</p>
 
 				<a href="https://www.ohmymag.com/home/animaux/en-dordogne-on-construit-un-eco-pont-pour-que-les-animaux-traversent-lautoroute_art117433.html"
