@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Biodiversité | Novaracines</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+	<style>
+		/* --- MÊME STYLE QUE L'ACCUEIL --- */
+		:root {
+			--dark-green: #0f3d22;
+			--forest-green: #1a4d2e;
+			--primary-green: #2d6a4f;
+			--accent-green: #40916c;
+			--light-green: #b7e4c7;
+			--mint-cream: #e8f5e9;
+			--white: #ffffff;
+			--focus-outline: 3px solid #ffb703;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Open Sans', sans-serif;
+			background-color: var(--mint-cream);
+			color: var(--dark-green);
+			line-height: 1.6;
+			overflow-x: hidden;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-family: 'Montserrat', sans-serif;
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit;
+			transition: color 0.3s;
+		}
+
+		/* HEADER */
+		header {
+			background-color: rgba(26, 77, 46, 0.98);
+			padding: 1rem 5%;
+			position: fixed;
+			width: 100%;
+			top: 0;
+			z-index: 1000;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+			backdrop-filter: blur(5px);
+		}
+
+		.logo {
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: var(--white);
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+
+		.logo-img {
+			height: 50px;
+			width: 50px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 2px solid var(--light-green);
+		}
+
+		nav ul {
+			display: flex;
+			list-style: none;
+			gap: 2.5rem;
+		}
+
+		nav a {
+			color: var(--white);
+			font-weight: 600;
+			font-size: 1.1rem;
+			position: relative;
+		}
+
+		.mobile-menu-btn {
+			display: none;
+			font-size: 1.8rem;
+			color: var(--white);
+			background: none;
+			border: none;
+			cursor: pointer;
+		}
+
+		/* HERO SPÉCIFIQUE - Image de fond sombre pour contraste */
+		.page-hero {
+			height: 60vh;
+			/* On réutilise l'image de forêt, mais vous pourrez en changer une autre si vous voulez */
+			background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('image_foret.jpg');
+			background-size: cover;
+			background-position: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			color: white;
+			padding-top: 80px;
+			position: relative;
+		}
+
+		.page-hero h1 {
+			font-size: 3.5rem;
+			margin-bottom: 1rem;
+		}
+
+		/* CONTENU */
+		.content-section {
+			padding: 6rem 10%;
+			max-width: 1200px;
+			margin: 0 auto;
+			background: white;
+			margin-top: -50px;
+			border-radius: 20px;
+			position: relative;
+			z-index: 10;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+		}
+
+		.content-block {
+			margin-bottom: 4rem;
+		}
+
+		.content-block h2 {
+			color: var(--forest-green);
+			margin-bottom: 1.5rem;
+			font-size: 2rem;
+			border-left: 5px solid var(--accent-green);
+			padding-left: 15px;
+		}
+
+		.content-block p {
+			margin-bottom: 1rem;
+			font-size: 1.1rem;
+		}
+
+		.btn-back {
+			display: inline-block;
+			margin-top: 2rem;
+			padding: 12px 25px;
+			background-color: var(--primary-green);
+			color: white;
+			border-radius: 50px;
+			font-weight: bold;
+		}
+
+		.btn-back:hover {
+			background-color: var(--dark-green);
+		}
+
+		/* FOOTER */
+		footer {
+			background-color: var(--dark-green);
+			color: var(--white);
+			text-align: center;
+			padding: 3rem 1rem;
+			margin-top: 4rem;
+		}
+
+		/* RESPONSIVE */
+		@media (max-width: 768px) {
+			header {
+				padding: 1rem;
+			}
+
+			.mobile-menu-btn {
+				display: block;
+				z-index: 1001;
+			}
+
+			nav ul {
+				display: none;
+				flex-direction: column;
+				position: fixed;
+				top: 0;
+				right: 0;
+				width: 80%;
+				height: 100vh;
+				background-color: var(--dark-green);
+				padding-top: 5rem;
+				align-items: center;
+				gap: 2rem;
+			}
+
+			nav ul.active {
+				display: flex;
+			}
+
+			.page-hero h1 {
+				font-size: 2.5rem;
+			}
+
+			.content-section {
+				padding: 3rem 5%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<header role="banner">
+		<div class="logo">
+			<a href="index.html" style="display: flex; align-items: center; gap: 10px; color: white; text-decoration: none;">
+				<img src="logo-novaracines.png" alt="Novaracines" class="logo-img" onerror="this.style.display='none'">
+				<span>Novaracines</span>
+			</a>
+		</div>
+		<button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+		<nav>
+			<ul id="nav-list">
+				<li><a href="index.html">Accueil</a></li>
+				<li><a href="index.html#mission">Notre Mission</a></li>
+				<li><a href="index.html#agir">Nos Actions</a></li>
+				<li><a href="quiz.html">Quiz</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="page-hero">
+		<div>
+			<h1>Préserver la Biodiversité</h1>
+			<p style="font-size: 1.2rem;">Créer des refuges pour la vie sauvage au cœur de nos forêts.</p>
+		</div>
+	</div>
+
+	<main class="content-section">
+		<div class="content-block">
+			<h2>Au-delà des Arbres : Un Écosystème Vivant</h2>
+			<p>Planter des arbres ne suffit pas. Notre objectif est de recréer de véritables écosystèmes complexes. En
+				choisissant soigneusement les essences que nous plantons, nous favorisons le retour d'une faune variée :
+				insectes pollinisateurs, oiseaux, et petits mammifères.</p>
+			<p>La biodiversité est la clé de la résilience de nos forêts face aux maladies et au changement climatique.</p>
+		</div>
+
+		<div class="content-block">
+			<h2>Nos Actions Concrètes</h2>
+			<p>Pour soutenir la faune locale, nous mettons en place plusieurs initiatives sur nos terrains :</p>
+			<ul style="margin-left: 20px; margin-bottom: 1rem; line-height: 2;">
+				<li>🦋 <strong>Choix d'essences locales :</strong> Nous sélectionnons des plantes natives qui offrent gîte et
+					couvert aux espèces de la région.</li>
+				<li>🪵 <strong>Zones de refuge :</strong> Nous laissons volontairement du bois mort et des zones en friche pour
+					abriter les hérissons et les insectes.</li>
+				<li>🐦 <strong>Corridors écologiques :</strong> Nos haies bocagères servent d'autoroutes naturelles pour
+					permettre aux animaux de circuler en sécurité.</li>
+			</ul>
+		</div>
+
+		<div style="text-align: center;">
+			<a href="index.html#agir" class="btn-back"><i class="fas fa-arrow-left"></i> Retour aux actions</a>
+		</div>
+	</main>
+
+	<footer>
+		<div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">
+			<i class="fas fa-seedling"></i> Novaracines
+		</div>
+		<p>&copy; 2024 Novaracines. Projet étudiant ESAIP.</p>
+	</footer>
+
+	<script>
+		function toggleMenu() {
+			const nav = document.getElementById('nav-list');
+			nav.classList.toggle('active');
+		}
+	</script>
+</body>
+
+</html>
