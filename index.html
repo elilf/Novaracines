@@ -2,828 +2,142 @@
 <html lang="fr">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description"
-		content="Novaracines : Projet étudiant de reforestation et de préservation de l'environnement. Rejoignez-nous pour planter l'avenir.">
-	<title>Novaracines | Reforestation & Avenir</title>
-
-	<link
-		href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-	<style>
-		/* --- VARIABLES & COULEURS --- */
-		:root {
-			--dark-green: #0f3d22;
-			--forest-green: #1a4d2e;
-			--primary-green: #2d6a4f;
-			--accent-green: #40916c;
-			--light-green: #b7e4c7;
-			--mint-cream: #e8f5e9;
-			--white: #ffffff;
-			--focus-outline: 3px solid #ffb703;
-		}
-
-		/* --- RESET & BASE --- */
-		html {
-			scroll-behavior: smooth;
-		}
-
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
-
-		body {
-			font-family: 'Open Sans', sans-serif;
-			background-color: var(--mint-cream);
-			color: var(--dark-green);
-			line-height: 1.6;
-			overflow-x: hidden;
-		}
-
-		h1,
-		h2,
-		h3,
-		h4 {
-			font-family: 'Montserrat', sans-serif;
-		}
-
-		.skip-link {
-			position: absolute;
-			top: -40px;
-			left: 0;
-			background: var(--dark-green);
-			color: white;
-			padding: 8px;
-			z-index: 2000;
-			transition: top 0.3s;
-		}
-
-		.skip-link:focus {
-			top: 0;
-		}
-
-		a {
-			text-decoration: none;
-			color: inherit;
-			transition: color 0.3s;
-		}
-
-		a:focus,
-		button:focus {
-			outline: var(--focus-outline);
-			outline-offset: 2px;
-		}
-
-		/* --- HEADER & NAVIGATION --- */
-		header {
-			background-color: rgba(26, 77, 46, 0.98);
-			padding: 1rem 5%;
-			position: fixed;
-			width: 100%;
-			top: 0;
-			z-index: 1000;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-			backdrop-filter: blur(5px);
-		}
-
-		.logo {
-			font-size: 1.5rem;
-			font-weight: 700;
-			color: var(--white);
-			display: flex;
-			align-items: center;
-			gap: 12px;
-		}
-
-		.logo-img {
-			height: 50px;
-			width: 50px;
-			border-radius: 50%;
-			object-fit: cover;
-			border: 2px solid var(--light-green);
-		}
-
-		nav ul {
-			display: flex;
-			list-style: none;
-			gap: 2.5rem;
-		}
-
-		nav a {
-			color: var(--white);
-			font-weight: 600;
-			font-size: 1.1rem;
-			position: relative;
-		}
-
-		nav a::after {
-			content: '';
-			position: absolute;
-			width: 0;
-			height: 2px;
-			bottom: -5px;
-			left: 0;
-			background-color: var(--light-green);
-			transition: width 0.3s;
-		}
-
-		nav a:hover::after {
-			width: 100%;
-		}
-
-		.mobile-menu-btn {
-			display: none;
-			font-size: 1.8rem;
-			color: var(--white);
-			background: none;
-			border: none;
-			cursor: pointer;
-		}
-
-		/* --- HERO SECTION --- */
-		.hero {
-			min-height: 100vh;
-			/* Image de fond */
-			background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
-				url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1470&auto=format&fit=crop');
-			background-size: cover;
-			background-position: center;
-			background-attachment: fixed;
-
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			text-align: center;
-			position: relative;
-			overflow: hidden;
-			color: var(--white);
-			padding: 80px 20px 150px;
-			/* Plus de padding en bas pour la vague */
-		}
-
-		.hero h1 {
-			font-size: clamp(2.5rem, 5vw, 4.5rem);
-			margin-bottom: 1.5rem;
-			text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-			animation: slideDown 1s ease-out;
-		}
-
-		.hero p {
-			font-size: clamp(1.1rem, 2vw, 1.5rem);
-			max-width: 700px;
-			margin-bottom: 2.5rem;
-			animation: fadeIn 1.5s ease-out 0.5s backwards;
-		}
-
-		.btn {
-			display: inline-block;
-			padding: 16px 32px;
-			background-color: var(--light-green);
-			color: var(--dark-green);
-			border-radius: 50px;
-			font-weight: 700;
-			font-size: 1.1rem;
-			border: 2px solid transparent;
-			cursor: pointer;
-			transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-		}
-
-		.btn:hover {
-			transform: translateY(-3px) scale(1.02);
-			background-color: var(--white);
-			box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-		}
-
-		/* --- STYLE DES VAGUES (DIVIDERS) --- */
-		.custom-shape-divider-bottom {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			overflow: hidden;
-			line-height: 0;
-			transform: rotate(180deg);
-		}
-
-		.custom-shape-divider-bottom svg {
-			position: relative;
-			display: block;
-			width: calc(100% + 1.3px);
-			height: 100px;
-			/* Hauteur de la vague */
-		}
-
-		.custom-shape-divider-bottom .shape-fill {
-			fill: var(--mint-cream);
-			/* Couleur de la section suivante */
-		}
-
-		.custom-shape-divider-top {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			overflow: hidden;
-			line-height: 0;
-		}
-
-		.custom-shape-divider-top svg {
-			position: relative;
-			display: block;
-			width: calc(100% + 1.3px);
-			height: 80px;
-		}
-
-		.custom-shape-divider-top .shape-fill {
-			fill: var(--mint-cream);
-			/* Couleur de la section précédente */
-		}
-
-		/* --- SECTIONS GÉNÉRALES --- */
-		section {
-			padding: 6rem 10%;
-			position: relative;
-		}
-
-		.section-title {
-			text-align: center;
-			font-size: clamp(2rem, 4vw, 3rem);
-			margin-bottom: 4rem;
-			color: var(--forest-green);
-			position: relative;
-			display: block;
-			width: 100%;
-		}
-
-		.section-title::after {
-			content: '';
-			display: block;
-			width: 60px;
-			height: 4px;
-			background: var(--accent-green);
-			margin: 10px auto 0;
-			border-radius: 2px;
-		}
-
-		/* --- ANIMATIONS SCROLL REVEAL --- */
-		.reveal {
-			opacity: 0;
-			transform: translateY(50px);
-			transition: all 0.8s ease-out;
-		}
-
-		.reveal.active {
-			opacity: 1;
-			transform: translateY(0);
-		}
-
-		/* --- CONTENU --- */
-		.project-origin {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			gap: 4rem;
-			background: var(--white);
-			border-radius: 20px;
-			padding: 3rem;
-			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-			margin-bottom: 4rem;
-		}
-
-		.origin-text {
-			flex: 1 1 300px;
-			font-size: 1.1rem;
-		}
-
-		.origin-icon {
-			font-size: 8rem;
-			color: var(--primary-green);
-			opacity: 0.15;
-			flex: 0 0 auto;
-		}
-
-		.values-grid {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			gap: 2rem;
-		}
-
-		.value-card {
-			background: var(--white);
-			padding: 2rem;
-			border-radius: 16px;
-			text-align: center;
-			border-top: 5px solid var(--primary-green);
-			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-			transition: transform 0.3s;
-			flex: 0 1 250px;
-			min-width: 220px;
-		}
-
-		.value-card:hover {
-			transform: translateY(-10px);
-		}
-
-		.value-card i {
-			font-size: 2.5rem;
-			color: var(--accent-green);
-			margin-bottom: 1rem;
-		}
-
-		/* --- TIMELINE --- */
-		.steps-container {
-			max-width: 800px;
-			margin: 0 auto;
-			position: relative;
-		}
-
-		.step {
-			background: var(--white);
-			padding: 2rem 2rem 2rem 3rem;
-			border-radius: 15px;
-			margin-bottom: 2rem;
-			border-left: 6px solid var(--primary-green);
-			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-			position: relative;
-		}
-
-		.step-number {
-			position: absolute;
-			left: -23px;
-			top: 50%;
-			transform: translateY(-50%);
-			width: 46px;
-			height: 46px;
-			background: var(--dark-green);
-			color: white;
-			border-radius: 50%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			font-weight: bold;
-			font-size: 1.2rem;
-			border: 4px solid var(--mint-cream);
-		}
-
-		/* --- CARDS ACTIONS --- */
-		.cards-container {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-			gap: 2.5rem;
-		}
-
-		.card {
-			background: var(--white);
-			padding: 2.5rem;
-			border-radius: 20px;
-			text-align: center;
-			transition: all 0.3s;
-			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
-
-		.card:hover {
-			transform: translateY(-10px);
-			box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-		}
-
-		.icon-circle {
-			width: 80px;
-			height: 80px;
-			background: var(--mint-cream);
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin-bottom: 1.5rem;
-		}
-
-		.card i {
-			font-size: 2.5rem;
-			color: var(--primary-green);
-		}
-
-		/* --- QUIZ SECTION --- */
-		#quiz-cta {
-			background: linear-gradient(135deg, var(--forest-green), var(--dark-green));
-			color: white;
-			text-align: center;
-			padding: 4rem 2rem;
-			border-radius: 20px;
-			margin: 4rem 10%;
-		}
-
-		/* --- STATS --- */
-		.stats {
-			background-color: var(--primary-green);
-			color: var(--white);
-			display: flex;
-			justify-content: center;
-			gap: 4rem;
-			flex-wrap: wrap;
-			text-align: center;
-			padding-top: 8rem;
-			/* Espace pour la vague du haut */
-			padding-bottom: 8rem;
-			/* Espace pour la vague du bas */
-		}
-
-		.stat-item h2 {
-			font-size: 3.5rem;
-			color: var(--light-green);
-			margin-bottom: 0.5rem;
-		}
-
-		.stat-item p {
-			font-size: 1.2rem;
-			font-weight: 600;
-			text-transform: uppercase;
-			letter-spacing: 1px;
-		}
-
-		/* --- FOOTER --- */
-		footer {
-			background-color: var(--dark-green);
-			color: var(--white);
-			text-align: center;
-			padding: 6rem 1rem 3rem;
-			/* Padding haut augmenté pour la vague */
-			margin-top: auto;
-			position: relative;
-		}
-
-		/* --- DÉCORATION & ANIMATIONS --- */
-		.floating-leaf {
-			position: absolute;
-			color: rgba(255, 255, 255, 0.3);
-			pointer-events: none;
-			animation: float 15s infinite linear;
-		}
-
-		@keyframes slideDown {
-			from {
-				transform: translateY(-50px);
-				opacity: 0;
-			}
-
-			to {
-				transform: translateY(0);
-				opacity: 1;
-			}
-		}
-
-		@keyframes fadeIn {
-			from {
-				opacity: 0;
-			}
-
-			to {
-				opacity: 1;
-			}
-		}
-
-		@keyframes float {
-			0% {
-				transform: translateY(100vh) rotate(0deg);
-				opacity: 0;
-			}
-
-			100% {
-				transform: translateY(-10vh) rotate(360deg);
-				opacity: 0;
-			}
-		}
-
-		/* --- RESPONSIVE --- */
-		@media (max-width: 768px) {
-			header {
-				padding: 1rem;
-			}
-
-			.mobile-menu-btn {
-				display: block;
-				z-index: 1001;
-			}
-
-			nav ul {
-				display: none;
-				flex-direction: column;
-				position: fixed;
-				top: 0;
-				right: 0;
-				width: 80%;
-				height: 100vh;
-				background-color: var(--dark-green);
-				padding-top: 5rem;
-				align-items: center;
-				gap: 2rem;
-				box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-			}
-
-			nav ul.active {
-				display: flex;
-				animation: slideInRight 0.3s ease-out;
-			}
-
-			.project-origin {
-				flex-direction: column;
-				text-align: center;
-				padding: 2rem;
-			}
-
-			.origin-icon {
-				display: none;
-			}
-
-			.steps-container {
-				padding-left: 20px;
-			}
-
-			.step-number {
-				width: 35px;
-				height: 35px;
-				font-size: 1rem;
-				left: -18px;
-			}
-		}
-
-		@keyframes slideInRight {
-			from {
-				transform: translateX(100%);
-			}
-
-			to {
-				transform: translateX(0);
-			}
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reforestation | Novaracines</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- MÊME STYLE QUE L'ACCUEIL --- */
+        :root {
+            --dark-green: #0f3d22;
+            --forest-green: #1a4d2e;
+            --primary-green: #2d6a4f;
+            --accent-green: #40916c;
+            --light-green: #b7e4c7;
+            --mint-cream: #e8f5e9;
+            --white: #ffffff;
+            --focus-outline: 3px solid #ffb703;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; background-color: var(--mint-cream); color: var(--dark-green); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+
+        /* HEADER */
+        header { background-color: rgba(26, 77, 46, 0.98); padding: 1rem 5%; position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); backdrop-filter: blur(5px); }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--white); display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 50px; width: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--light-green); }
+        nav ul { display: flex; list-style: none; gap: 2.5rem; }
+        nav a { color: var(--white); font-weight: 600; font-size: 1.1rem; position: relative; }
+        .mobile-menu-btn { display: none; font-size: 1.8rem; color: var(--white); background: none; border: none; cursor: pointer; }
+
+        /* HERO SPÉCIFIQUE */
+        .page-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('image_foret.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+            position: relative;
+        }
+        
+        .page-hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+
+        /* CONTENU */
+        .content-section { padding: 6rem 10%; max-width: 1200px; margin: 0 auto; background: white; margin-top: -50px; border-radius: 20px; position: relative; z-index: 10; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .content-block { margin-bottom: 4rem; }
+        .content-block h2 { color: var(--forest-green); margin-bottom: 1.5rem; font-size: 2rem; border-left: 5px solid var(--accent-green); padding-left: 15px; }
+        .content-block p { margin-bottom: 1rem; font-size: 1.1rem; }
+        
+        .btn-back { display: inline-block; margin-top: 2rem; padding: 12px 25px; background-color: var(--primary-green); color: white; border-radius: 50px; font-weight: bold; }
+        .btn-back:hover { background-color: var(--dark-green); }
+
+        /* FOOTER */
+        footer { background-color: var(--dark-green); color: var(--white); text-align: center; padding: 3rem 1rem; margin-top: 4rem; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header { padding: 1rem; }
+            .mobile-menu-btn { display: block; z-index: 1001; }
+            nav ul { display: none; flex-direction: column; position: fixed; top: 0; right: 0; width: 80%; height: 100vh; background-color: var(--dark-green); padding-top: 5rem; align-items: center; gap: 2rem; }
+            nav ul.active { display: flex; }
+            .page-hero h1 { font-size: 2.5rem; }
+            .content-section { padding: 3rem 5%; }
+        }
+    </style>
 </head>
 
 <body>
 
-	<a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <header role="banner">
+        <div class="logo">
+            <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: white; text-decoration: none;">
+                <img src="logo-novaracines.png" alt="Novaracines" class="logo-img" onerror="this.style.display='none'">
+                <span>Novaracines</span>
+            </a>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="index.html#mission">Notre Mission</a></li>
+                <li><a href="index.html#agir">Nos Actions</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
 
-	<header role="banner">
-		<div class="logo">
-			<a href="index.html" style="display: flex; align-items: center; gap: 10px; color: white; text-decoration: none;">
-				<img src="logo-novaracines.png" alt="Novaracines" class="logo-img" onerror="this.style.display='none'">
-				<span>Novaracines</span>
-			</a>
-		</div>
+    <div class="page-hero">
+        <div>
+            <h1>Nos Projets de Reforestation</h1>
+            <p style="font-size: 1.2rem;">Restaurer les écosystèmes locaux, un arbre à la fois.</p>
+        </div>
+    </div>
 
-		<button class="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" onclick="toggleMenu()">
-			<i class="fas fa-bars"></i>
-		</button>
+    <main class="content-section">
+        <div class="content-block">
+            <h2>Notre Approche : Le Partenariat Local</h2>
+            <p>Plutôt que d'acheter des terrains, nous avons choisi une approche collaborative. Nous travaillons directement avec des <strong>particuliers et des agriculteurs</strong> qui souhaitent revaloriser leurs terres mais manquent de temps ou de ressources.</p>
+            <p>Cette méthode nous permet de créer des liens forts avec les acteurs locaux et d'assurer un suivi durable des plantations.</p>
+        </div>
 
-		<nav role="navigation">
-			<ul id="nav-list">
-				<li><a href="#accueil" onclick="toggleMenu()">Accueil</a></li>
-				<li><a href="#mission" onclick="toggleMenu()">Notre Mission</a></li>
-				<li><a href="#agir" onclick="toggleMenu()">Nos Actions</a></li>
-				<li><a href="quiz.html" onclick="toggleMenu()">Quiz</a></li>
-			</ul>
-		</nav>
-	</header>
+        <div class="content-block">
+            <h2>Projet Pilote : Les Haies Bocagères en Mayenne</h2>
+            <p>Notre projet actuel se concentre sur la plantation de <strong>haies bocagères</strong> en partenariat avec un agriculteur en Mayenne. Les haies jouent un rôle crucial :</p>
+            <ul style="margin-left: 20px; margin-bottom: 1rem; line-height: 2;">
+                <li>🛡️ Protection des cultures contre le vent.</li>
+                <li>💧 Meilleure rétention de l'eau dans les sols.</li>
+                <li>🐦 Refuge pour la biodiversité (oiseaux, insectes pollinisateurs).</li>
+            </ul>
+            <p>Nous sélectionnons des <strong>essences locales</strong> adaptées au climat de demain pour garantir la résilience de nos plantations face au réchauffement climatique.</p>
+        </div>
 
-	<main id="main-content">
-		<section class="hero" id="accueil">
-			<i class="fas fa-leaf floating-leaf" style="left: 10%; animation-duration: 12s; font-size: 24px;"
-				aria-hidden="true"></i>
-			<i class="fas fa-leaf floating-leaf"
-				style="left: 80%; animation-duration: 15s; font-size: 32px; animation-delay: 2s;" aria-hidden="true"></i>
-			<i class="fas fa-leaf floating-leaf"
-				style="left: 40%; animation-duration: 18s; font-size: 20px; animation-delay: 5s;" aria-hidden="true"></i>
+        <div style="text-align: center;">
+            <a href="index.html#agir" class="btn-back"><i class="fas fa-arrow-left"></i> Retour aux actions</a>
+        </div>
+    </main>
 
-			<h1>Novaracines</h1>
-			<p>Enraciner l'avenir, une forêt à la fois. Un projet étudiant engagé pour la planète.</p>
+    <footer>
+        <div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">
+            <i class="fas fa-seedling"></i> Novaracines
+        </div>
+        <p>&copy; 2024 Novaracines. Projet étudiant ESAIP.</p>
+    </footer>
 
-			<div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-				<a href="#agir" class="btn">Découvrir nos actions</a>
-				<a href="quiz.html" class="btn" style="background: transparent; border: 2px solid white; color: white;">Jouer au
-					Quiz</a>
-			</div>
-
-			<div class="custom-shape-divider-bottom">
-				<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-					<path
-						d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-						class="shape-fill"></path>
-				</svg>
-			</div>
-		</section>
-
-		<section id="mission">
-			<h2 class="section-title reveal">Notre Mission</h2>
-
-			<article class="project-origin reveal">
-				<div class="origin-text">
-					<h3>Une Initiative Étudiante ESAIP</h3>
-					<p>Né au cœur de l'<strong>ESAIP</strong> à Saint-Barthélemy-d'Anjou, Novaracines est porté par un groupe de
-						<strong>3 étudiants</strong> passionnés.
-					</p>
-					<br>
-					<p>Notre mission s'aligne avec les valeurs de l'école : construire un <strong>"avenir responsable"</strong>.
-						Plus qu'une simple plantation, nous créons un écosystème durable et formons les citoyens de demain.</p>
-				</div>
-				<i class="fas fa-user-graduate origin-icon" aria-hidden="true"></i>
-			</article>
-
-			<h3 style="text-align: center; margin-bottom: 2rem; color: var(--forest-green);" class="reveal">Nos Valeurs
-				Fondamentales</h3>
-			<div class="values-grid">
-				<div class="value-card reveal"><i class="fas fa-shield-alt"></i>
-					<h4>Intégrité</h4>
-					<p>Transparence totale.</p>
-				</div>
-				<div class="value-card reveal"><i class="fas fa-leaf"></i>
-					<h4>Écologie</h4>
-					<p>Respect des cycles naturels.</p>
-				</div>
-				<div class="value-card reveal"><i class="fas fa-users"></i>
-					<h4>Collectif</h4>
-					<p>La force du groupe.</p>
-				</div>
-				<div class="value-card reveal"><i class="fas fa-bullhorn"></i>
-					<h4>Sensibilisation</h4>
-					<p>Éduquer pour pérenniser.</p>
-				</div>
-				<div class="value-card reveal"><i class="fas fa-balance-scale"></i>
-					<h4>Responsabilité</h4>
-					<p>Plantation réfléchie.</p>
-				</div>
-			</div>
-		</section>
-
-		<section style="background-color: var(--white);">
-			<h2 class="section-title reveal">Notre Méthode</h2>
-			<div class="steps-container">
-				<div class="step reveal">
-					<div class="step-number">1</div>
-					<h3>Espèces Adaptées</h3>
-					<p>Arbres locaux résistants.</p>
-				</div>
-				<div class="step reveal">
-					<div class="step-number">2</div>
-					<h3>Préparation du Sol</h3>
-					<p>Enrichissement naturel.</p>
-				</div>
-				<div class="step reveal">
-					<div class="step-number">3</div>
-					<h3>Plantation Intelligente</h3>
-					<p>Respect des distances.</p>
-				</div>
-				<div class="step reveal">
-					<div class="step-number">4</div>
-					<h3>Implication Locale</h3>
-					<p>Participation citoyenne.</p>
-				</div>
-			</div>
-		</section>
-
-		<section id="agir">
-			<h2 class="section-title reveal">Nos Actions Concrètes</h2>
-			<div class="cards-container">
-				<div class="card reveal">
-					<div class="icon-circle"><i class="fas fa-tree"></i></div>
-					<h3>Reforestation</h3>
-				</div>
-				<div class="card reveal">
-					<div class="icon-circle"><i class="fas fa-frog"></i></div>
-					<h3>Biodiversité</h3>
-				</div>
-				<div class="card reveal">
-					<div class="icon-circle"><i class="fas fa-chalkboard-teacher"></i></div>
-					<h3>Éducation</h3>
-				</div>
-			</div>
-		</section>
-
-		<div id="quiz-cta" class="reveal">
-			<i class="fas fa-gamepad" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-			<h2>Prêt à relever le défi ?</h2>
-			<p style="margin-bottom: 2rem;">Testez vos connaissances.</p>
-			<a href="quiz.html" class="btn" style="background-color: white; color: var(--dark-green);">Lancer le Quiz</a>
-		</div>
-
-		<section class="stats" aria-label="Statistiques du projet">
-			<div class="custom-shape-divider-top">
-				<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-					<path
-						d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-						class="shape-fill"></path>
-				</svg>
-			</div>
-
-			<div class="stat-item">
-				<h2 id="count1">0</h2>
-				<p>Arbres Plantés</p>
-			</div>
-			<div class="stat-item">
-				<h2>15</h2>
-				<p>Forêts Aidées</p>
-			</div>
-			<div class="stat-item">
-				<h2>2000+</h2>
-				<p>Heures de Bénévolat</p>
-			</div>
-		</section>
-	</main>
-
-	<footer role="contentinfo">
-		<div class="custom-shape-divider-top">
-			<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-				<path
-					d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-					style="fill: var(--primary-green);"></path>
-			</svg>
-		</div>
-
-		<div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">
-			<i class="fas fa-seedling" aria-hidden="true"></i> Novaracines
-		</div>
-		<p>&copy; 2024 Novaracines. Projet étudiant ESAIP - <a href="#" style="text-decoration: underline;">Mentions
-				Légales</a></p>
-		<div style="margin-top: 1rem; font-size: 1.5rem;">
-			<a href="https://www.instagram.com/novaracines/" target="_blank" rel="noopener noreferrer"
-				aria-label="Visiter notre Instagram">
-				<i class="fab fa-instagram"></i>
-			</a>
-			<a href="#" aria-label="Visiter notre LinkedIn" style="margin-left: 15px;">
-				<i class="fab fa-linkedin"></i>
-			</a>
-		</div>
-	</footer>
-
-	<script>
-		// --- MENU MOBILE ---
-		function toggleMenu() {
-			const nav = document.getElementById('nav-list');
-			const btn = document.querySelector('.mobile-menu-btn');
-			const icon = btn.querySelector('i');
-			nav.classList.toggle('active');
-			const isExpanded = nav.classList.contains('active');
-			btn.setAttribute('aria-expanded', isExpanded);
-			if (isExpanded) {
-				icon.classList.remove('fa-bars');
-				icon.classList.add('fa-times');
-			} else {
-				icon.classList.remove('fa-times');
-				icon.classList.add('fa-bars');
-			}
-		}
-
-		// --- SCROLL REVEAL ---
-		const revealElements = document.querySelectorAll('.reveal');
-		const revealOnScroll = () => {
-			const windowHeight = window.innerHeight;
-			revealElements.forEach((element) => {
-				const elementTop = element.getBoundingClientRect().top;
-				if (elementTop < windowHeight - 100) {
-					element.classList.add('active');
-				}
-			});
-		};
-		window.addEventListener('scroll', revealOnScroll);
-		revealOnScroll();
-
-		// --- COMPTEUR ---
-		const counterElement = document.getElementById('count1');
-		const target = 15430;
-		let count = 0;
-		let hasCounted = false;
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting && !hasCounted) {
-					hasCounted = true;
-					const updateCounter = () => {
-						const increment = target / 100;
-						if (count < target) {
-							count += increment;
-							counterElement.innerText = Math.ceil(count).toLocaleString();
-							requestAnimationFrame(updateCounter);
-						} else {
-							counterElement.innerText = target.toLocaleString();
-						}
-					};
-					updateCounter();
-				}
-			});
-		});
-		observer.observe(document.querySelector('.stats'));
-	</script>
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav-list');
+            nav.classList.toggle('active');
+        }
+    </script>
 </body>
-
 </html>
