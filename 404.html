@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Page non trouvée | Novaracines</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<style>
+		:root {
+			--dark-green: #0f3d22;
+			--light-green: #b7e4c7;
+			--white: #ffffff;
+		}
+
+		body {
+			font-family: 'Open Sans', sans-serif;
+			margin: 0;
+			padding: 0;
+			background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('image_foret.jpg');
+			background-size: cover;
+			background-position: center;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			color: var(--white);
+		}
+
+		h1 {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 8rem;
+			margin: 0;
+			color: var(--light-green);
+			text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+		}
+
+		h2 {
+			font-size: 2rem;
+			margin-bottom: 1rem;
+		}
+
+		p {
+			font-size: 1.2rem;
+			max-width: 600px;
+			margin-bottom: 2rem;
+			padding: 0 20px;
+		}
+
+		.btn {
+			padding: 15px 30px;
+			background-color: var(--light-green);
+			color: var(--dark-green);
+			border-radius: 50px;
+			text-decoration: none;
+			font-weight: bold;
+			font-size: 1.2rem;
+			transition: transform 0.3s;
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.btn:hover {
+			transform: scale(1.05);
+			background-color: var(--white);
+		}
+
+		.icon-404 {
+			font-size: 5rem;
+			margin-bottom: 1rem;
+			color: var(--white);
+			opacity: 0.8;
+		}
+	</style>
+</head>
+
+<body>
+
+	<i class="fas fa-compass icon-404"></i>
+	<h1>404</h1>
+	<h2>Oups ! Vous êtes perdu dans les bois ?</h2>
+	<p>Le sentier que vous essayez d'emprunter n'existe pas ou a été déplacé. Ne restez pas seul dans la forêt sombre !
+	</p>
+
+	<a href="index.html" class="btn">
+		<i class="fas fa-home"></i> Retour au camp de base (Accueil)
+	</a>
+
+</body>
+
+</html>
