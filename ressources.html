@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Bibliothèque de Ressources | Novaracines</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+	<style>
+		/* --- STYLE GLOBAL (Identique aux autres pages) --- */
+		:root {
+			--dark-green: #0f3d22;
+			--forest-green: #1a4d2e;
+			--primary-green: #2d6a4f;
+			--accent-green: #40916c;
+			--light-green: #b7e4c7;
+			--mint-cream: #e8f5e9;
+			--white: #ffffff;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Open Sans', sans-serif;
+			background-color: var(--mint-cream);
+			color: var(--dark-green);
+			line-height: 1.6;
+			overflow-x: hidden;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-family: 'Montserrat', sans-serif;
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit;
+			transition: color 0.3s;
+		}
+
+		/* HEADER */
+		header {
+			background-color: rgba(26, 77, 46, 0.98);
+			padding: 1rem 5%;
+			position: fixed;
+			width: 100%;
+			top: 0;
+			z-index: 1000;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+			backdrop-filter: blur(5px);
+		}
+
+		.logo {
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: var(--white);
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+
+		.logo-img {
+			height: 50px;
+			width: 50px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 2px solid var(--light-green);
+		}
+
+		nav ul {
+			display: flex;
+			list-style: none;
+			gap: 2.5rem;
+		}
+
+		nav a {
+			color: var(--white);
+			font-weight: 600;
+			font-size: 1.1rem;
+			position: relative;
+		}
+
+		nav a:hover {
+			color: var(--light-green);
+		}
+
+		.mobile-menu-btn {
+			display: none;
+			font-size: 1.8rem;
+			color: var(--white);
+			background: none;
+			border: none;
+			cursor: pointer;
+		}
+
+		/* HERO */
+		.page-hero {
+			height: 50vh;
+			background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('image_foret.jpg');
+			background-size: cover;
+			background-position: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			color: white;
+			padding-top: 80px;
+		}
+
+		.page-hero h1 {
+			font-size: 3rem;
+			margin-bottom: 1rem;
+		}
+
+		/* CONTENU RESSOURCES */
+		.resources-section {
+			padding: 6rem 10%;
+			max-width: 1200px;
+			margin: -50px auto 0;
+			background: white;
+			border-radius: 20px;
+			position: relative;
+			z-index: 10;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+		}
+
+		.category-title {
+			color: var(--forest-green);
+			margin: 3rem 0 1.5rem;
+			font-size: 1.8rem;
+			border-bottom: 3px solid var(--light-green);
+			display: inline-block;
+			padding-bottom: 5px;
+		}
+
+		.resource-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 2rem;
+		}
+
+		.resource-card {
+			background: var(--mint-cream);
+			padding: 2rem;
+			border-radius: 15px;
+			transition: transform 0.3s;
+			border: 1px solid transparent;
+		}
+
+		.resource-card:hover {
+			transform: translateY(-5px);
+			border-color: var(--primary-green);
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+		}
+
+		.resource-card h3 {
+			color: var(--primary-green);
+			margin-bottom: 0.5rem;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.resource-card p {
+			font-size: 0.95rem;
+			margin-bottom: 1.5rem;
+			color: #555;
+		}
+
+		.resource-link {
+			font-weight: bold;
+			color: var(--dark-green);
+			text-decoration: underline;
+		}
+
+		/* FOOTER */
+		footer {
+			background-color: var(--dark-green);
+			color: var(--white);
+			text-align: center;
+			padding: 3rem 1rem;
+			margin-top: 4rem;
+		}
+
+		@media (max-width: 768px) {
+			header {
+				padding: 1rem;
+			}
+
+			.mobile-menu-btn {
+				display: block;
+				z-index: 1001;
+			}
+
+			nav ul {
+				display: none;
+				flex-direction: column;
+				position: fixed;
+				top: 0;
+				right: 0;
+				width: 80%;
+				height: 100vh;
+				background-color: var(--dark-green);
+				padding-top: 5rem;
+				align-items: center;
+				gap: 2rem;
+			}
+
+			nav ul.active {
+				display: flex;
+			}
+
+			.resources-section {
+				padding: 3rem 5%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<header role="banner">
+		<div class="logo">
+			<a href="index.html" style="display: flex; align-items: center; gap: 10px; color: white; text-decoration: none;">
+				<img src="logo-novaracines.png" alt="Novaracines" class="logo-img" onerror="this.style.display='none'">
+				<span>Novaracines</span>
+			</a>
+		</div>
+		<button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+		<nav>
+			<ul id="nav-list">
+				<li><a href="index.html">Accueil</a></li>
+				<li><a href="index.html#mission">Notre Mission</a></li>
+				<li><a href="index.html#agir">Nos Actions</a></li>
+				<li><a href="ressources.html" style="color: var(--light-green);">Ressources</a></li>
+				<li><a href="quiz.html">Quiz</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="page-hero">
+		<div>
+			<h1>Bibliothèque Verte</h1>
+			<p>Pour comprendre, apprendre et aller plus loin.</p>
+		</div>
+	</div>
+
+	<main class="resources-section">
+
+		<p style="font-size: 1.1rem; margin-bottom: 2rem;">
+			Nous avons rassemblé ici les documents, rapports et ouvrages qui guident notre action. Informer, c'est déjà agir.
+		</p>
+
+		<h2 class="category-title"><i class="fas fa-chart-line"></i> Rapports & Données Scientifiques</h2>
+		<div class="resource-grid">
+			<article class="resource-card">
+				<h3><i class="fas fa-temperature-high"></i> TRACC 2023 (Météo France)</h3>
+				<p>Découvrez les trajectoires de réchauffement de référence pour l'adaptation au changement climatique (Carte de
+					France +2.7°C en 2050).</p>
+				<a href="https://meteofrance.com/" target="_blank" class="resource-link">Consulter le rapport &rarr;</a>
+			</article>
+
+			<article class="resource-card">
+				<h3><i class="fas fa-globe-europe"></i> Rapports du GIEC</h3>
+				<p>La référence mondiale pour comprendre l'évolution du climat et l'importance cruciale des forêts comme puits
+					de carbone.</p>
+				<a href="https://www.ipcc.ch/languages-2/francais/" target="_blank" class="resource-link">Accéder aux rapports
+					&rarr;</a>
+			</article>
+		</div>
+
+		<h2 class="category-title"><i class="fas fa-book-open"></i> Livres & Inspirations</h2>
+		<div class="resource-grid">
+			<article class="resource-card">
+				<h3><i class="fas fa-tree"></i> La Vie Secrète des Arbres</h3>
+				<p>De Peter Wohlleben. Un livre fascinant qui explique comment les arbres communiquent et prennent soin les uns
+					des autres.</p>
+			</article>
+
+			<article class="resource-card">
+				<h3><i class="fas fa-film"></i> L'Intelligence des Arbres</h3>
+				<p>Un documentaire incontournable pour changer votre regard sur la forêt lors de votre prochaine promenade.</p>
+			</article>
+		</div>
+
+		<h2 class="category-title"><i class="fas fa-graduation-cap"></i> Outils Pédagogiques</h2>
+		<div class="resource-grid">
+			<article class="resource-card">
+				<h3><i class="fas fa-gamepad"></i> Quiz Novaracines</h3>
+				<p>Testez vos connaissances avec notre "Mille Bornes Écologique" et faites grandir votre arbre virtuel.</p>
+				<a href="quiz.html" class="resource-link">Jouer maintenant &rarr;</a>
+			</article>
+
+			<article class="resource-card">
+				<h3><i class="fas fa-building"></i> Cité des Sciences</h3>
+				<p>L'exposition "Urgence Climatique" à Paris est une excellente ressource pour visualiser les enjeux actuels.
+				</p>
+				<a href="https://www.cite-sciences.fr/" target="_blank" class="resource-link">Voir le site &rarr;</a>
+			</article>
+		</div>
+
+	</main>
+
+	<footer>
+		<div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">
+			<i class="fas fa-seedling"></i> Novaracines
+		</div>
+		<p>&copy; 2024 Novaracines. Projet étudiant ESAIP.</p>
+	</footer>
+
+	<script>
+		function toggleMenu() {
+			const nav = document.getElementById('nav-list');
+			nav.classList.toggle('active');
+		}
+	</script>
+</body>
+
+</html>
