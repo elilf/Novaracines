@@ -426,33 +426,19 @@
 			margin: 4rem 10%;
 		}
 
-		/* --- STATS --- */
+		/* --- STATS SECTION (MODIFIÉE - RÉDUITE) --- */
 		.stats {
 			background-color: var(--primary-green);
 			color: var(--white);
-			display: flex;
-			justify-content: center;
-			gap: 4rem;
-			flex-wrap: wrap;
-			text-align: center;
-			padding-top: 8rem;
+			/* Plus de flexbox centré car la section est vide */
+			position: relative;
+			padding-top: 6rem;
 			/* Espace pour la vague du haut */
-			padding-bottom: 8rem;
-			/* Espace pour la vague du bas */
+			padding-bottom: 4rem;
+			/* Espace réduit */
 		}
 
-		.stat-item h2 {
-			font-size: 3.5rem;
-			color: var(--light-green);
-			margin-bottom: 0.5rem;
-		}
-
-		.stat-item p {
-			font-size: 1.2rem;
-			font-weight: 600;
-			text-transform: uppercase;
-			letter-spacing: 1px;
-		}
+		/* Les styles .stat-item ont été supprimés car on ne les utilise plus */
 
 		/* --- FOOTER --- */
 		footer {
@@ -697,7 +683,6 @@
 		<section id="agir">
 			<h2 class="section-title reveal">Nos Actions Concrètes</h2>
 			<div class="cards-container">
-
 				<a href="reforestation.html" class="card reveal"
 					style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
 					<div class="icon-circle"><i class="fas fa-tree"></i></div>
@@ -721,9 +706,7 @@
 					<p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--primary-green); font-weight: bold;">En savoir
 						plus <i class="fas fa-arrow-right"></i></p>
 				</a>
-
 			</div>
-
 		</section>
 
 		<div id="quiz-cta" class="reveal">
@@ -733,26 +716,13 @@
 			<a href="quiz.html" class="btn" style="background-color: white; color: var(--dark-green);">Lancer le Quiz</a>
 		</div>
 
-		<section class="stats" aria-label="Statistiques du projet">
+		<section class="stats" aria-label="Décoration verte">
 			<div class="custom-shape-divider-top">
 				<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
 					<path
 						d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
 						class="shape-fill"></path>
 				</svg>
-			</div>
-
-			<div class="stat-item">
-				<h2 id="count1">0</h2>
-				<p>Arbres Plantés</p>
-			</div>
-			<div class="stat-item">
-				<h2>15</h2>
-				<p>Forêts Aidées</p>
-			</div>
-			<div class="stat-item">
-				<h2>2000+</h2>
-				<p>Heures de Bénévolat</p>
 			</div>
 		</section>
 	</main>
@@ -813,31 +783,6 @@
 		};
 		window.addEventListener('scroll', revealOnScroll);
 		revealOnScroll();
-
-		// --- COMPTEUR ---
-		const counterElement = document.getElementById('count1');
-		const target = 15430;
-		let count = 0;
-		let hasCounted = false;
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting && !hasCounted) {
-					hasCounted = true;
-					const updateCounter = () => {
-						const increment = target / 100;
-						if (count < target) {
-							count += increment;
-							counterElement.innerText = Math.ceil(count).toLocaleString();
-							requestAnimationFrame(updateCounter);
-						} else {
-							counterElement.innerText = target.toLocaleString();
-						}
-					};
-					updateCounter();
-				}
-			});
-		});
-		observer.observe(document.querySelector('.stats'));
 	</script>
 </body>
 
